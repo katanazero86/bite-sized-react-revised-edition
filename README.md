@@ -2,9 +2,47 @@
 
 한입 크기로 잘라 먹는 리액트 개정판 실습 프로젝트 모음입니다.
 
-## 프로젝트별 기술 스택
+---
+
+## 학습 메모
+
+오랜만에 AI 활용 없이 책의 흐름을 따라가며 직접 코드를 작성해 보고 싶어서 이 저장소에 정리했습니다.
+
+## 설치 및 실행 방법
+
+각 프로젝트는 독립적인 npm 프로젝트입니다. 실행하려는 프로젝트 폴더로 이동한 뒤 의존성을 설치하고 개발 서버를 실행합니다.
 
 ### project1: counter
+
+```bash
+cd counter
+npm install
+npm run dev
+```
+
+### project2: todo
+
+```bash
+cd todo
+npm install
+npm run dev
+```
+
+`todo` 프로젝트는 개발 서버가 기본적으로 `http://localhost:3000`에서 실행되도록 설정되어 있습니다.
+
+### project3: emotional-diary
+
+```bash
+cd emotional-diary
+npm install
+npm run dev
+```
+
+---
+
+## 프로젝트별 기술 스택
+
+### project1: counter(P.253)
 
 - 경로: `counter`
 ```
@@ -19,7 +57,8 @@ cd counter
 - 정적 분석: ESLint, TypeScript ESLint, React Hooks ESLint Plugin, React Refresh ESLint Plugin
 - 패키지 관리: npm (`package-lock.json`)
 
-### project2: todo
+
+### project2: todo(P.295)
 
 - 경로: `todo`
 ```
@@ -38,7 +77,7 @@ cd todo
 - 코드 품질: ESLint, TanStack ESLint Config, Prettier
 - 패키지 관리: npm (`package-lock.json`)
 
-### project3: emotional-diary
+### project3: emotional-diary(P.415)
 
 - 경로: `emotional-diary/emotional-diary`
 ```

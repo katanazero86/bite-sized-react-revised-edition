@@ -18,6 +18,8 @@
     "react-dom": "^19.2.5",
     "react-router": "^7.14.2",
     "tailwindcss": "^4.2.4",
+    "timezone": "^1.0.23",
+    "utc": "^0.1.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {

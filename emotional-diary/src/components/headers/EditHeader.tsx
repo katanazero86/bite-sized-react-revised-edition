@@ -1,21 +1,21 @@
 import {useNavigate, useParams} from "react-router";
 import Button from "../buttons/Button.tsx";
 import ChevronLeftIcon from "../icons/ChevronLeftIcon.tsx";
-import {useDiaryMutations} from "../../hooks/useDiaryMutations.ts";
+import {useDiariesMutations} from "../../hooks/useDiariesMutations.ts";
 
 export default function EditHeader() {
     const navigate = useNavigate();
     const {id} = useParams();
 
-    const {deleteDiary} = useDiaryMutations()
+    const {deleteDiaries} = useDiariesMutations()
 
     const handleClick = () => {
         navigate(-1)
     }
 
-    const handleDeleteClick = () => {
+    const handleDeleteClick = async () => {
         if (confirm("정말 삭제하시겠습니까?")) {
-            deleteDiary(id!)
+            await deleteDiaries(id!)
             navigate('/', {replace: true});
         }
     }

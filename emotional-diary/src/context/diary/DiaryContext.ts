@@ -1,9 +1,10 @@
 import {createContext, useContext } from "react";
-import type {diaryMock} from "../../mocks/diary-mock.ts";
+import type {DiaryType} from "../../schema/diary/diarySchema.ts";
 
 export const DiaryContext = createContext<null | {
-    diary: typeof diaryMock,
-    setDiary: React.Dispatch<React.SetStateAction<typeof diaryMock>>
+    diary: DiaryType[],
+    refetchDiaries: () => Promise<void>
+    // setDiary: React.Dispatch<React.SetStateAction<typeof diaryMock>>
 }>(null);
 
 

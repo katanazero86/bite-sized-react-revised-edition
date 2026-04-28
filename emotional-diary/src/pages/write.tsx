@@ -7,8 +7,10 @@ import PageContainer from "../components/layout/PageContainer.tsx";
 import {nanoid} from "nanoid";
 import {useDiary} from "../context/diary/DiaryContext.ts";
 import EditHeader from "../components/headers/EditHeader.tsx";
-import {useDiaryMutations} from "../hooks/useDiaryMutations.ts";
 import {Diary} from "../schema/diary/diarySchema.ts";
+import {useDiariesMutations} from "../hooks/useDiariesMutations.ts";
+import dayjs from "dayjs";
+import {formatDate, KST_TIMEZONE} from "../utils/dateUtils.ts";
 
 type WriteProps = {
     isEdit?: boolean
@@ -19,10 +21,10 @@ export default function Write({isEdit = false}: WriteProps) {
     const {id} = useParams()
     const navigation = useNavigate();
     const {diary} = useDiary()
-    const {createDiary, editDiary} = useDiaryMutations()
+    const {createDiaries, updateDiaries} = useDiariesMutations()
     const targetDiary = diary.find(d => d.id === id)
 
-    const [date, setDate] = useState(isEdit ? targetDiary?.createdAt ?? new Date() : new Date());
+    const [date, setDate] = useState(isEdit ? targetDiary?.createdAt ?? new Date().toISOString() : new Date().toISOString());
     const [selectedEmotion, setSelectedEmotion] = useState<'veryGood' | 'good' | 'normal' | 'bad' | 'veryBad'>(isEdit ? targetDiary?.emotion ?? 'normal' : 'normal');
     const contentRef = useRef<HTMLTextAreaElement>(null);
 
@@ -33,14 +35,15 @@ export default function Write({isEdit = false}: WriteProps) {
     }, [isEdit, targetDiary])
 
     const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDate(new Date(e.target.value));
+        const kstDate = dayjs.tz(e.target.value, KST_TIMEZONE);
+        setDate(kstDate.toISOString());
     }
 
     const handleEmotionChange = (emotion: 'veryGood' | 'good' | 'normal' | 'bad' | 'veryBad') => {
         setSelectedEmotion(emotion);
     }
 
-    const handleWriteClick = () => {
+    const handleWriteClick = async () => {
 
         const form = {
             id: isEdit ? id! : nanoid(),
@@ -56,9 +59,9 @@ export default function Write({isEdit = false}: WriteProps) {
             return
         } else {
             if (isEdit) {
-                editDiary(form)
+                await updateDiaries(form)
             } else {
-                createDiary(form)
+                await createDiaries(form)
             }
             navigation('/')
         }
@@ -78,8 +81,8 @@ export default function Write({isEdit = false}: WriteProps) {
                 <p className="text-sm mb-2">오늘의 날짜</p>
                 <input type="date"
                        className="w-full border border-gray-400 rounded p-2 outline-none focus:border-gray-600 text-sm"
-                       max={new Date().toISOString().split('T')[0]}
-                       value={date.toISOString().split('T')[0]} onChange={handleDateChange}/>
+                       max={dayjs().tz(KST_TIMEZONE).format('YYYY-MM-DD')}
+                       value={formatDate(new Date(date))} onChange={handleDateChange}/>
             </div>
 
             <div className="mt-4">

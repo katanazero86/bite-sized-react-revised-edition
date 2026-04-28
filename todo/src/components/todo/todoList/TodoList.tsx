@@ -68,13 +68,9 @@ export default function TodoList({
             </div>
           </div>
         ))
-      ) : query ? (
-        <div className="font-semibold text-red-400">
-          존재하지 않는 할 일 입니다.
-        </div>
       ) : (
         <div className="font-semibold text-red-400">
-          입력 된 할 일이 없습니다.
+          존재하지 않는 할 일 입니다.
         </div>
       )}
     </div>

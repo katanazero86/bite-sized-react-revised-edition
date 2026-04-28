@@ -57,6 +57,8 @@ cd counter
 - 정적 분석: ESLint, TypeScript ESLint, React Hooks ESLint Plugin, React Refresh ESLint Plugin
 - 패키지 관리: npm (`package-lock.json`)
 
+![counter.gif](counter.gif)
+
 
 ### project2: todo(P.295)
 
@@ -77,6 +79,8 @@ cd todo
 - 코드 품질: ESLint, TanStack ESLint Config, Prettier
 - 패키지 관리: npm (`package-lock.json`)
 
+![todo.gif](todo.gif)
+
 ### project3: emotional-diary(P.415)
 
 - 경로: `emotional-diary/emotional-diary`
@@ -94,3 +98,5 @@ cd emotional-diary
 - 컴파일/최적화: React Compiler, Babel, Rolldown Babel Plugin
 - 정적 분석: ESLint, TypeScript ESLint, React Hooks ESLint Plugin, React Refresh ESLint Plugin
 - 패키지 관리: npm (`package-lock.json`)
+
+![emotional-diary.gif](emotional-diary.gif)

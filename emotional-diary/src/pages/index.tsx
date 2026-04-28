@@ -32,7 +32,7 @@ export default function Index() {
         navigate('/write');
     }
 
-    const formattedDate = formatDate(date, 'YYYY. MM. DD')
+    const formattedDate = formatDate(date, 'YYYY년 MM월')
 
     return (
         <PageContainer>

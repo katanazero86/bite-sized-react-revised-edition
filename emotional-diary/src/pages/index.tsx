@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import dayjs from "dayjs";
 import Button from "../components/buttons/Button.tsx";
@@ -33,6 +33,20 @@ export default function Index() {
     }
 
     const formattedDate = formatDate(date, 'YYYY년 MM월')
+
+    useEffect(() => {
+        const fetchTest = async () => {
+            try {
+                const result =  await fetch('/api/user')
+                const data = await result.text()
+                console.log(data)
+            } catch (err) {
+                console.error('Error fetching user data:', err);
+            }
+        }
+
+        fetchTest()
+    }, [])
 
     return (
         <PageContainer>
